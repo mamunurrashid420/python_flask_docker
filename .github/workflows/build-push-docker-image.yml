@@ -62,7 +62,7 @@ jobs:
       - name: Deploy on AWS EC2
         env:
           PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          HOSTNAME: ${{ secrets.HOSTNAME }}
+          HOSTNAME: ${{ secrets.HOST_NAME }}
           USER_NAME: ${{ secrets.USERNAME }}
           IMAGE_TAG: ${{env.IMAGE_TAG}}
           IMAGE_NAME: ${{env.IMAGE_NAME}}
