@@ -34,6 +34,7 @@ jobs:
         env:
           PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
           HOSTNAME: ${{secrets.HOST_NAME}}
+          USER_NAME: ${{ secrets.USERNAME }}
           IMAGE_TAG: ${{secrets.IMAGE_TAG}}
           IMAGE_NAME: ${{secrets.IMAGE_NAME}}
         run: echo \"$PRIVATE_KEY" > private_key.pem && chmod -R 600 private_key.pem ls sed -i -e 's | IMAGE_TAG:|'"$IMAGE_TAG"' | '${{github.workspace}}/docker-compose.yml' sed -i -e 's |DOCKER_REGISTRY |' "$IMAGE_NAME"' | ${{github.workspace}}/docker-compose.yml scp -o StrictHostKeyCheckin=no -i private_key.pem ${{github.workspace}}/docker-compose.yml ${USER_NAME}@${HOST_NAME} ssh -o StrictHostKeyChecking=no -i private_key.pem ${USER_NAME}@${HOSTNAME}' cd /tmp docker-compose up -d '
